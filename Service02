@@ -1,0 +1,20 @@
+const request = require('request');
+const prompt = "What is your massage therapist's name? On a scale of 0-4, how would you rate your massage experience? 0: Very Unsatisfied 1: Unsatisfied 2: Satisfied 3: Very Satisfied 4: Highly Recommend";
+const max_tokens = 1024;
+const options = {
+    method: 'POST',
+    url: 'https://api.openai.com/v1/engines/text-davinci/jobs',
+    headers: {
+        'Authorization': 'Bearer <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>',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "prompt": prompt,
+        "max_tokens": max_tokens
+    })
+};
+
+request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    console.log(body);
+});
